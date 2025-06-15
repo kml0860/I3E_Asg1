@@ -54,6 +54,7 @@ public class LockedDoor : MonoBehaviour
         else
         {
             Debug.Log($"Missing key: {requiredKey}");
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.lockedClip); // Locked sound
             UIManager.Instance?.ShowKeyRequirement(requiredKey); // Display key requirement to the UI
         }
     }

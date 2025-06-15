@@ -4,6 +4,7 @@
 Author: Kai Ming
 Date: 2025-06-15
 Description: Proof of concept 3D Platformer/Puzzle game.
+Collect Coins to gain Score, avoid Fire Hazards and Landmines which damage you. Interact with Doors to open them, though some require keycards to open ! Green Orbs heal you. Look for the pink Exit Portal !
 
 Controls:
 WASD to move
