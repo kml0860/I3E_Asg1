@@ -3,6 +3,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 /*
  * Author: Your Name
@@ -19,7 +20,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private TextMeshProUGUI keyText;
     [SerializeField] private TextMeshProUGUI winText;
+    [SerializeField] private TextMeshProUGUI winScoreText;
     [SerializeField] private GameObject crosshair;
+    [SerializeField] private TextMeshProUGUI requirementText;
+    [SerializeField] private float messageDuration = 2f;
+    private Coroutine messageRoutine;
+
 
     private void Awake()
     {
@@ -48,7 +54,32 @@ public class UIManager : MonoBehaviour
 
 
     public void ShowWinMessage()
+{
+    winText.gameObject.SetActive(true);
+
+    if (winScoreText != null)
     {
-        winText.gameObject.SetActive(true);
+        winScoreText.text = $"Final Score: {PlayerBehaviour.Instance.CurrentScore}";
+        winScoreText.gameObject.SetActive(true);
     }
+}
+
+
+    public void ShowKeyRequirement(string keyName)
+    {
+        if (requirementText == null) return;
+
+        if (messageRoutine != null)
+            StopCoroutine(messageRoutine);
+
+                requirementText.text = $"You need a {keyName} keycard to open this door.";
+                requirementText.gameObject.SetActive(true);
+                messageRoutine = StartCoroutine(HideMessageAfterDelay());
+    }
+
+    private IEnumerator HideMessageAfterDelay()
+        {
+            yield return new WaitForSeconds(messageDuration);
+            requirementText.gameObject.SetActive(false);
+        }
 }

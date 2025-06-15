@@ -144,6 +144,15 @@ public void ModifyHealth(int amount)
     }
 
     public bool HasKey(string keyName) => collectedKeys.Contains(keyName);
+
+    public static PlayerBehaviour Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public int CurrentScore => currentScore;
 }
 
 

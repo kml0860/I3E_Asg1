@@ -38,6 +38,7 @@ public class LockedDoor : MonoBehaviour
         else
         {
             Debug.Log($"Missing key: {requiredKey}");
+            UIManager.Instance?.ShowKeyRequirement(requiredKey);
         }
     }
 
